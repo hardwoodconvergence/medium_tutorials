@@ -1,69 +1,48 @@
 -- To run, connect to psql command line and type- \i Desktop/medium_tutorials/db_scripts/create_tables.sql
---gl_player
-DROP TABLE IF EXISTS gl_player;
-
-CREATE TABLE IF NOT EXISTS gl_player(
-	game_id	TEXT,
-	team_id	TEXT,
-	team_abbr TEXT,	
-	team_city TEXT,	
-	nba_id TEXT,	
-	player_name	TEXT,
-	start_position TEXT,
-	comment	TEXT,
-	mins	TEXT,
-	fgm	NUMERIC,
-	fga	NUMERIC,
-	fg_pct NUMERIC,
-	fg3m NUMERIC,	
-	fg3a NUMERIC,	
-	fg3_pct	NUMERIC,
-	ftm	NUMERIC,
-	fta	NUMERIC,
-	ft_pct NUMERIC,
-	oreb NUMERIC,
-	dreb NUMERIC,
-	reb	NUMERIC,
-	ast	NUMERIC,
-	stl	NUMERIC,
-	blk	NUMERIC,
-	tov NUMERIC,
-	pf NUMERIC,
-	pts	NUMERIC,
-	plus_minus NUMERIC
+--player_bs
+DROP TABLE IF EXISTS raw.player_bs;
+CREATE TABLE IF NOT EXISTS raw.player_bs(
+ game_id TEXT,
+ team_id TEXT,
+ team_abbr TEXT, 
+ team_city TEXT, 
+ player_id TEXT, 
+ player_name TEXT,
+ start_position TEXT,
+ comment TEXT,
+ mins TEXT,
+ fgm NUMERIC,
+ fga NUMERIC,
+ fg_pct NUMERIC,
+ fg3m NUMERIC, 
+ fg3a NUMERIC, 
+ fg3_pct NUMERIC,
+ ftm NUMERIC,
+ fta NUMERIC,
+ ft_pct NUMERIC,
+ oreb NUMERIC,
+ dreb NUMERIC,
+ reb NUMERIC,
+ ast NUMERIC,
+ stl NUMERIC,
+ blk NUMERIC,
+ tov NUMERIC,
+ pf NUMERIC,
+ pts NUMERIC,
+ plus_minus NUMERIC,
+ file_name TEXT
 );
-COPY gl_player FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_player_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.player_bs FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/player_bs_trad_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_other
-DROP TABLE IF EXISTS gl_other;
+--player_bs_adv
+DROP TABLE IF EXISTS raw.player_bs_adv;
 
-CREATE TABLE IF NOT EXISTS gl_other(
-	league_id TEXT,
-	team_id TEXT,
-	team_abbr TEXT,
-	team_city TEXT,
-	pts_paint NUMERIC,
-	pts_2nd_chance NUMERIC, 
-	pts_fb NUMERIC,
-	largest_lead NUMERIC,
-	lead_changes NUMERIC,
-	times_tied NUMERIC,
-	team_tov NUMERIC,
-	tot_tov NUMERIC,
-	team_reb NUMERIC,
-	pts_off_tov NUMERIC
-);
-COPY gl_other FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_other_init.csv' DELIMITER ','  CSV HEADER;
-
---gl_player_advanced
-DROP TABLE IF EXISTS gl_player_adv;
-
-CREATE TABLE IF NOT EXISTS gl_player_adv(
+CREATE TABLE IF NOT EXISTS raw.player_bs_adv(
 	game_id	TEXT,
 	team_id TEXT,
 	team_abbr TEXT,
 	team_city TEXT,
-	nba_id TEXT,
+	player_id TEXT,
 	player_name TEXT,
 	start_position TEXT,
 	comment TEXT,
@@ -89,19 +68,20 @@ CREATE TABLE IF NOT EXISTS gl_player_adv(
 	pace NUMERIC,
 	pace_per40 NUMERIC,
 	poss NUMERIC,
-	pie NUMERIC
+	pie NUMERIC,
+	file_name TEXT
 );
-COPY gl_player_adv FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_player_adv_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.player_bs_adv FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/player_bs_advanced_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_player_fourfactors
-DROP TABLE IF EXISTS gl_player_ff;
+--player_bs_ff
+DROP TABLE IF EXISTS raw.player_bs_ff;
 
-CREATE TABLE IF NOT EXISTS gl_player_ff(
+CREATE TABLE IF NOT EXISTS raw.player_bs_ff(
 	game_id	TEXT,
 	team_id	TEXT,
 	team_abbr TEXT,	
 	team_city TEXT,
-	nba_id TEXT,
+	player_id TEXT,
 	player_name	TEXT,
 	start_position TEXT,
 	comment	TEXT,
@@ -113,19 +93,20 @@ CREATE TABLE IF NOT EXISTS gl_player_ff(
 	opp_efg_pct NUMERIC,	
 	opp_fta_rate NUMERIC,	
 	opp_tov_pct NUMERIC,	
-	opp_oreb_pct NUMERIC
+	opp_oreb_pct NUMERIC,
+	file_name TEXT
 );
-COPY gl_player_ff FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_player_ff_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.player_bs_ff FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/player_bs_ff_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_player_misc
-DROP TABLE IF EXISTS gl_player_misc;
+--player_bs_misc
+DROP TABLE IF EXISTS raw.player_bs_misc;
 
-CREATE TABLE IF NOT EXISTS gl_player_misc(
+CREATE TABLE IF NOT EXISTS raw.player_bs_misc(
 	game_id	TEXT,
 	team_id	TEXT,
 	team_abbr TEXT,
 	team_city TEXT,	
-	nba_id TEXT,
+	player_id TEXT,
 	player_name	TEXT,
 	start_position TEXT,
 	comment	TEXT,
@@ -141,19 +122,20 @@ CREATE TABLE IF NOT EXISTS gl_player_misc(
 	blk	NUMERIC,
 	blka NUMERIC,	
 	pf	NUMERIC,
-	pfd NUMERIC
+	pfd NUMERIC,
+	file_name TEXT
 );
-COPY gl_player_misc FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_player_misc_init.csv' DELIMITER ',' CSV HEADER;
+COPY raw.player_bs_misc FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/player_bs_misc_init.csv' DELIMITER ',' CSV HEADER;
 
---gl_player_scoring
-DROP TABLE IF EXISTS gl_player_scoring;
+--player_bs_scoring
+DROP TABLE IF EXISTS raw.player_bs_scoring;
 
-CREATE TABLE IF NOT EXISTS gl_player_scoring(
+CREATE TABLE IF NOT EXISTS raw.player_bs_scoring(
 	game_id	TEXT,
 	team_id	TEXT,
 	team_abbr TEXT,
 	team_city TEXT,	
-	nba_id TEXT,
+	player_id TEXT,
 	player_name	TEXT,
 	start_position TEXT,
 	comment TEXT,
@@ -172,19 +154,20 @@ CREATE TABLE IF NOT EXISTS gl_player_scoring(
 	pct_ast_3pm	NUMERIC,
 	pct_uast_3pm NUMERIC,	
 	pct_ast_fgm	NUMERIC,
-	pct_uast_fgm NUMERIC
+	pct_uast_fgm NUMERIC,
+	file_name TEXT
 );
-COPY gl_player_scoring FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_player_scoring_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.player_bs_scoring FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/player_bs_scoring_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_player_usage
-DROP TABLE IF EXISTS gl_player_usage;
+--player_bs_usage
+DROP TABLE IF EXISTS raw.player_bs_usage;
 
-CREATE TABLE IF NOT EXISTS gl_player_usage(
+CREATE TABLE IF NOT EXISTS raw.player_bs_usage(
 	game_id	TEXT,
 	team_id	TEXT,
 	team_abbr TEXT,
 	team_city TEXT,	
-	nba_id TEXT,
+	player_id TEXT,
 	player_name	TEXT,
 	start_position TEXT,	
 	comment	TEXT,
@@ -206,35 +189,75 @@ CREATE TABLE IF NOT EXISTS gl_player_usage(
 	pct_blka NUMERIC,	
 	pct_pf	NUMERIC,
 	pct_pfd	NUMERIC,
-	pct_pts NUMERIC
+	pct_pts NUMERIC,
+	file_name TEXT
 );
-COPY gl_player_usage FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_player_usage_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.player_bs_usage FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/player_bs_usage_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_summary
-DROP TABLE IF EXISTS gl_summary;
+--player_bs_summary
+DROP TABLE IF EXISTS raw.player_bs_summ;
 
-CREATE TABLE IF NOT EXISTS gl_summary(
-	game_date_est TEXT,
-	game_sequence NUMERIC,
-	game_id	TEXT,
-	game_status_id NUMERIC,	
-	game_status_text TEXT,	
-	gamecode TEXT,	
-	home_team_id TEXT,	
-	visitor_team_id	TEXT,
-	season NUMERIC,	
-	live_period NUMERIC,
-	live_pc_time TEXT,	
-	natl_tv_broadcaster_abbr TEXT,
-	live_period_time_bcast TEXT,	
-	wh_status NUMERIC
+CREATE TABLE IF NOT EXISTS raw.player_bs_summ(
+	game_date_est text,
+	game_sequence text,
+	game_id text,
+	game_status_id text,
+	game_status_text text,
+	gamecode text,
+	home_team_id text,
+	visitor_team_id text,
+	season text,
+	live_period text,
+	live_pc_time text,
+	natl_tv_broadcaster_abbreviation text,
+	live_period_time_bcast text,
+	wh_status text,
+	file_name text
 );
-COPY gl_summary FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_summary_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.player_bs_summ FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/player_bs_summ_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_team_advanced
-DROP TABLE IF EXISTS gl_team_adv;
 
-CREATE TABLE IF NOT EXISTS gl_team_adv(
+--player_bs_pt
+DROP TABLE IF EXISTS raw.player_bs_pt;
+
+CREATE TABLE IF NOT EXISTS raw.player_bs_pt(
+	game_id TEXT,
+	team_id TEXT,
+	team_abbreviation TEXT,
+	team_city TEXT,
+	player_id TEXT,
+	player_name TEXT,
+	start_position TEXT,
+	comment TEXT,
+	min TEXT,
+	spd NUMERIC,
+	dist NUMERIC,
+	orbc NUMERIC,
+	drbc NUMERIC,
+	rbc NUMERIC,
+	tchs NUMERIC,
+	sast NUMERIC,
+	ftast NUMERIC,
+	pass NUMERIC,
+	ast NUMERIC,
+	cfgm NUMERIC,
+	cfga NUMERIC,
+	cfg_pct NUMERIC,
+	ufgm NUMERIC,
+	ufga NUMERIC,
+	ufg_pct NUMERIC,
+	fg_pct NUMERIC,
+	dfgm NUMERIC,
+	dfga NUMERIC,
+	dfg_pct NUMERIC,
+	file_name TEXT
+);
+COPY raw.player_bs_pt FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/player_bs_pt_init.csv' DELIMITER ','  CSV HEADER;
+
+--team_bs_advanced
+DROP TABLE IF EXISTS raw.team_bs_adv;
+
+CREATE TABLE IF NOT EXISTS raw.team_bs_adv(
 	game_id	TEXT,
 	team_id	TEXT,
 	team_name TEXT,	
@@ -263,14 +286,15 @@ CREATE TABLE IF NOT EXISTS gl_team_adv(
 	pace NUMERIC,
 	pace_per40 NUMERIC,
 	POSS NUMERIC,	
-	pie NUMERIC
+	pie NUMERIC,
+	file_name TEXT
 );
-COPY gl_team_adv FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_team_adv_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.team_bs_adv FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/team_bs_advanced_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_team_fourfactors
-DROP TABLE IF EXISTS gl_team_ff;
+--team_bs_fourfactors
+DROP TABLE IF EXISTS raw.team_bs_ff;
 
-CREATE TABLE IF NOT EXISTS gl_team_ff(
+CREATE TABLE IF NOT EXISTS raw.team_bs_ff(
 	game_id	TEXT,
 	team_id	TEXT,
 	team_name TEXT,
@@ -284,14 +308,15 @@ CREATE TABLE IF NOT EXISTS gl_team_ff(
 	opp_efg_pct NUMERIC,	
 	opp_fta_rate NUMERIC,	
 	opp_tov_pct NUMERIC,	
-	opp_oreb_pct NUMERIC
+	opp_oreb_pct NUMERIC,
+	file_name TEXT
 );
-COPY gl_team_ff FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_team_ff_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.team_bs_ff FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/team_bs_ff_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_team_misc
-DROP TABLE IF EXISTS gl_team_misc;
+--team_bs_misc
+DROP TABLE IF EXISTS raw.team_bs_misc;
 
-CREATE TABLE IF NOT EXISTS gl_team_misc(
+CREATE TABLE IF NOT EXISTS raw.team_bs_misc(
 	game_id	TEXT,
 	team_id	TEXT,
 	team_name TEXT,
@@ -309,14 +334,15 @@ CREATE TABLE IF NOT EXISTS gl_team_misc(
 	blk NUMERIC,	
 	blka NUMERIC,	
 	pf NUMERIC,	
-	pfd NUMERIC
+	pfd NUMERIC,
+	file_name TEXT
 );
-COPY gl_team_misc FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_team_misc_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.team_bs_misc FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/team_bs_misc_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_team_scoring
-DROP TABLE IF EXISTS gl_team_scoring;
+--team_bs_scoring
+DROP TABLE IF EXISTS raw.team_bs_scoring;
 
-CREATE TABLE IF NOT EXISTS gl_team_scoring(
+CREATE TABLE IF NOT EXISTS raw.team_bs_scoring(
 	game_id	TEXT,
 	team_id	TEXT,
 	team_name TEXT,	
@@ -337,14 +363,15 @@ CREATE TABLE IF NOT EXISTS gl_team_scoring(
 	pct_ast_3pm	NUMERIC,
 	pct_uast_3pm NUMERIC,	
 	pct_ast_fgm	NUMERIC,
-	pct_uast_fgm NUMERIC
+	pct_uast_fgm NUMERIC,
+	file_name TEXT
 );
-COPY gl_team_scoring FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_team_scoring_init.csv' DELIMITER ','  CSV HEADER;
+COPY raw.team_bs_scoring FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/team_bs_scoring_init.csv' DELIMITER ','  CSV HEADER;
 
---gl_team
-DROP TABLE IF EXISTS gl_team;
+--team_bs
+DROP TABLE IF EXISTS raw.team_bs;
 
-CREATE TABLE IF NOT EXISTS gl_team(
+CREATE TABLE IF NOT EXISTS raw.team_bs(
 	game_id	TEXT,
 	team_id	TEXT,
 	team_name TEXT,	
@@ -369,11 +396,44 @@ CREATE TABLE IF NOT EXISTS gl_team(
 	tov NUMERIC,
 	pf NUMERIC,
 	pts	NUMERIC,
-	plus_minus NUMERIC
+	plus_minus NUMERIC,
+	file_name TEXT
 );
-COPY gl_team FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/gl_team_init.csv' DELIMITER ',' CSV HEADER;
+COPY raw.team_bs FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/team_bs_trad_init.csv' DELIMITER ',' CSV HEADER;
 
+--team_bs_pt
+DROP TABLE IF EXISTS raw.team_bs_pt;
 
+CREATE TABLE IF NOT EXISTS raw.team_bs_pt(
+		game_id TEXT,
+		team_id TEXT,
+		team_name TEXT,
+		team_abbr TEXT,
+		team_city TEXT,
+		min TEXT,
+		dist NUMERIC,
+		orbc NUMERIC,
+		drbc NUMERIC,
+		rbc NUMERIC,
+		tchs NUMERIC,
+		sast NUMERIC,
+		ftast NUMERIC,
+		pass NUMERIC,
+		ast NUMERIC,
+		cfgm NUMERIC,
+		cfga NUMERIC,
+		cfg_pct NUMERIC,
+		ufgm NUMERIC,
+		ufga NUMERIC,
+		ufg_pct NUMERIC,
+		fg_pct NUMERIC,
+		dfgm NUMERIC,
+		dfga NUMERIC,
+		dfg_pct NUMERIC,
+		file_name TEXT
+
+);
+COPY raw.team_bs_pt FROM '/Users/Dan/Desktop/medium_tutorials/base_data/db_init_data/team_bs_pt_init.csv' DELIMITER ',' CSV HEADER;
 
 
 
